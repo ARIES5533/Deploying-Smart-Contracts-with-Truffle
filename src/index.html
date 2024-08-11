@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hello World</title>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+  <script language="javascript" type="text/javascript" src="./abi.js"></script>
+  <script>
+    // this will be where our code will be
+    window.addEventListener('load', async () => {
+
+    var contract;
+    const contractAddress = "0x608f3A28fBcd75153656958ad232Fd347202f916";
+
+    const contractMessage = async () => {
+      contract = new web3.eth.Contract(abi, contractAddress);
+      let message = await contract.methods.getMessage().call();
+      return message;
+    }
+
+    // Modern dapp browsers...
+    if (window.ethereum) {
+      window.web3 = new Web3(ethereum);
+      try {
+        // Request account access if needed
+        await ethereum.enable();
+        var message = await contractMessage();
+        var elm = document.getElementById("message");
+        elm.innerHTML = message;
+      } catch (error) {
+        // User denied account access...
+      }
+    }
+    // Non-dapp browsers...
+    else {
+      console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+  });
+  </script>
+</head>
+<body>
+  <div id="message">As a skilled DevOps Engineer, I specialize in designing and implementing resilient cloud infrastructures and automating deployment processes. Leveraging extensive AWS expertise, I deliver efficient and reliable solutions. Proficient in Terraform, containerization, and CI/CD practices, I optimize application delivery and drive operational excellence. With a fast-growing knowledge of blockchain and web3 technologies, I contribute to decentralized projects by deploying and managing blockchain nodes, ensuring secure smart contract deployment, and integrating decentralized storage solutions. My expertise in tools like Hardhat, Infura, and Chainlink enables me to support scalable and secure web3 applications.</div>
+  <div id="message">Skills:</div>
+  <div id="message">Blockchain: Solidity, Hardhat, Truffle, Ganache, Infura, IPFS</div>
+  <div id="message">Cloud Infrastructure: AWS, Terraform, Docker, Kubernetes</div>
+  <div id="message">CI/CD: Jenkins, Bitbucket Pipeline, GitHub Actions, AWS CodePipeline</div>
+  <div id="message">Networking: TCP/IP, DNS, VPN, VPC.</div>
+  <div id="message">Security: AWS IAM, AWS KMS, Azure AD.</div>
+  <div id="message">Scripting and Programming: Python, Bash.</div>
+  <div id="message">Monitoring and Logging: Prometheus, Grafana, ELK Stack, AWS CloudWatch.</div>
+</body>
+</html>
